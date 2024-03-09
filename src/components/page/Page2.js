@@ -8,7 +8,6 @@ import ItemList from '../itemList/ItemList';
 import './page2.css';
 import Item from '../item/Item';
 
-import { selectItems } from '../../store/slices/idsSlice';
 import { selectLoading } from '../../store/slices/loadingSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -21,7 +20,6 @@ const Page2 = (props) => {
    const [endPage, setEnd] = useState(false);
    const [startPage, setStart] = useState(true);
 
-   const test = useSelector(selectItems);
    const load = useSelector(selectLoading)
 
    const dispatch = useDispatch();
@@ -33,15 +31,9 @@ const Page2 = (props) => {
          top: -1000,
          behavior: "smooth"
       });
-      if (page === filtered.length) {
-         //setPage(1);
-         //setOffset(0);
-         //setEnd(true);
-      } else {
-         setPage(page => page + 1);
-         setOffset(offset => offset + width);
-         setStart(false);
-      }
+      setPage(page => page + 1);
+      setOffset(offset => offset + width);
+      setStart(false);
       onPaginationActive(page);
    }, [page])
 
@@ -51,16 +43,9 @@ const Page2 = (props) => {
          top: -1000,
          behavior: "smooth"
       });
-
-      if (page === 1) {
-         //setPage(filtered.length);
-         //setOffset(width * (filtered.length - 1));
-         //setStart(true);
-      } else {
-         setPage(page => page - 1);
-         setOffset(offset => offset - width);
-         setEnd(false);
-      }
+      setPage(page => page - 1);
+      setOffset(offset => offset - width);
+      setEnd(false);
       onPaginationActive(page);
    }, [page])
 
@@ -110,17 +95,6 @@ const Page2 = (props) => {
 
    useEffect(() => {
       toogleStartEnd()
-      //if (page === filtered.length) {
-      //   setEnd(true);
-      //} else {
-      //   setEnd(false);
-      //}
-
-      //if (page === 1) {
-      //   setStart(true);
-      //} else {
-      //   setStart(false);
-      //}
       onPaginationActive(page);
 
    }, [page, endPage, startPage])

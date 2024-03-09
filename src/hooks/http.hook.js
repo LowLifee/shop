@@ -71,7 +71,7 @@ export const useHttp = () => {
       _api2,
       _getIds,
       _getItems,
-      _requestData   //не обращать внимание на retutn
+      _requestData   //не обращать внимание на return
 
    }
 };
