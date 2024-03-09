@@ -10,7 +10,6 @@ import Item from '../item/Item';
 
 import { selectItems } from '../../store/slices/idsSlice';
 import { selectLoading } from '../../store/slices/loadingSlice';
-import { selectPages, setPages } from '../../store/slices/pagesSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Page2 = (props) => {
@@ -19,8 +18,9 @@ const Page2 = (props) => {
    const [page, setPage] = useState(1);
    const [offset, setOffset] = useState(0);
    const [loading, setLoading] = useState(false);
+   const [endPage, setEnd] = useState(false);
+   const [startPage, setStart] = useState(true);
 
-   const currentPage = useSelector(selectPages);
    const test = useSelector(selectItems);
    const load = useSelector(selectLoading)
 
@@ -34,18 +34,16 @@ const Page2 = (props) => {
          behavior: "smooth"
       });
       if (page === filtered.length) {
-         dispatch(setPages(1));
-         setPage(1);
-         setOffset(0);
+         //setPage(1);
+         //setOffset(0);
+         //setEnd(true);
       } else {
-
          setPage(page => page + 1);
-         dispatch(setPages(page));
          setOffset(offset => offset + width);
+         setStart(false);
       }
-
       onPaginationActive(page);
-   }, [page, currentPage])
+   }, [page])
 
    const onPrev = useCallback(() => {
       const width = document.querySelector('.page-container').clientWidth;
@@ -53,23 +51,24 @@ const Page2 = (props) => {
          top: -1000,
          behavior: "smooth"
       });
+
       if (page === 1) {
-         dispatch(setPages(filtered.length));
-         setPage(filtered.length);
-         setOffset(width * filtered.length - 1);
+         //setPage(filtered.length);
+         //setOffset(width * (filtered.length - 1));
+         //setStart(true);
       } else {
          setPage(page => page - 1);
-         dispatch(setPages(page));
          setOffset(offset => offset - width);
+         setEnd(false);
       }
       onPaginationActive(page);
-   }, [page, currentPage])
+   }, [page])
 
    const pagination = useCallback((filtered) => {
       const pages = filtered.map((item, i) => {
          const id = uuidv4();
-         
-         if(i === 0){
+
+         if (i === 0) {
             return (
                <button
                   key={id}
@@ -104,9 +103,27 @@ const Page2 = (props) => {
       })
    }, [page])
 
+   const toogleStartEnd = () => {
+      page === filtered.length ? setEnd(true) : setEnd(false);
+      page === 1 ? setStart(true) : setStart(false);
+   }
+
    useEffect(() => {
+      toogleStartEnd()
+      //if (page === filtered.length) {
+      //   setEnd(true);
+      //} else {
+      //   setEnd(false);
+      //}
+
+      //if (page === 1) {
+      //   setStart(true);
+      //} else {
+      //   setStart(false);
+      //}
       onPaginationActive(page);
-   }, [page])
+
+   }, [page, endPage, startPage])
 
    const onChangePage = useCallback((num) => {
       window.scrollTo({
@@ -115,11 +132,10 @@ const Page2 = (props) => {
       });
 
       const width = document.querySelector('.page-container').clientWidth;
-      dispatch(setPages(num));
       setPage(page => num)
       setOffset(width * (num - 1));
-      onPaginationActive();
-   }, [currentPage])
+      onPaginationActive(page);
+   }, [page])
 
    const itemDevider = useCallback((list) => {
 
@@ -207,11 +223,13 @@ const Page2 = (props) => {
          <div className="page-btns">
             <button
                id='prev'
-               onClick={onPrev}>Prev</button>
+               onClick={onPrev}
+               disabled={startPage}>Prev</button>
             {pagination(filtered)}
             <button
                id='next'
-               onClick={onNext}>Next</button>
+               onClick={onNext}
+               disabled={endPage}>Next</button>
             <span id='page-number'>{`${page} / ${filtered.length}`}</span>
          </div>
          <div className='view-item'>

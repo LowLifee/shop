@@ -28,11 +28,13 @@ export const useHttp = () => {
       "params": { "ids": ["1789ecf3-f81c-4f49-ada2-83804dcc74b0"] }
    }
 
-   
+
    const field = {
       "action": "get_fields",
-      "params": {"field": "brand", "offset": 3, "limit": 5}
-  }
+      "params": { "field": "brand", "offset": 3, "limit": 5 }
+   }
+
+// ради теста пробовал поставить в тело константы сверху
 
    const request = async (url = _api, method = 'POST', body = JSON.stringify(field), headers = { 'Content-type': 'application/json', 'X-Auth': XAuth }) => {
 
@@ -41,7 +43,7 @@ export const useHttp = () => {
          const response = await fetch(url, { method, body, headers });
 
          if (!response.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${response.status}`)
+            throw new Error(`Could not fetch ${url}, status: ${response.status}`) // в консоле ошибку с статусом 500
          }
 
          setProcess(false);
@@ -69,7 +71,7 @@ export const useHttp = () => {
       _api2,
       _getIds,
       _getItems,
-      _requestData
+      _requestData   //не обращать внимание на retutn
 
    }
 };
