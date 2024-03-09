@@ -75,7 +75,7 @@ const MainPage = () => {
   const { request } = useHttp();
 
   useEffect(() => {
-    request().then(res => console.log(res))
+    request();
   }, []);
 
   //   useEffect(() => {

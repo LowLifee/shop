@@ -20,7 +20,7 @@ export const useHttp = () => {
 
    const _getIds = {
       "action": "get_ids",
-      "params": { "offset": 10, "limit": 3 }
+      "params": { "offset": 1, "limit": 50 }
    };
 
    const _getItems = {
@@ -36,7 +36,7 @@ export const useHttp = () => {
 
 // ради теста пробовал поставить в тело константы сверху
 
-   const request = async (url = _api, method = 'POST', body = JSON.stringify(field), headers = { 'Content-type': 'application/json', 'X-Auth': XAuth }) => {
+   const request = async (url = _api, method = 'POST', body = JSON.stringify(_getIds), headers = { 'Content-type': 'application/json', 'X-Auth': XAuth }) => {
 
       setProcess(true);
       try {
