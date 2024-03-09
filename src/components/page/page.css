@@ -1,0 +1,101 @@
+.page-wrapper {
+   width: max-content;
+   height: max-content;
+   background-color: red;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 50px;
+   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+}
+.item-list-grid {
+   display: grid;
+   grid-template-columns: repeat(10, 1fr); /* 10 колонок */
+   grid-template-rows: repeat(5, 1fr);
+   gap: 5px;
+}
+.item {
+   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+   width: 70px;
+   height: 130px;
+   cursor: pointer;
+   transition: 0.3s transform;
+   background-color: lightblue;
+   border: 1px solid darkblue;
+   padding: 15px;
+   margin: 10px;
+}
+
+/* __________________________ */
+
+.page-wrapper {
+   position: relative;
+   width: 1060px;
+   height: 550px;
+   display: grid;
+   justify-content: flex-start;
+}
+
+.content {
+   width: 737px;
+   height: 550px;
+   display: flex;
+   align-items: flex-start;
+   justify-content: flex-start;
+   overflow: hidden;
+   position: relative;
+   bottom: 40px;
+   background-color: aliceblue;
+}
+
+.list-page {
+   width: 100%;
+   transition: all, 0.5s;
+   display: grid;
+   grid-auto-flow: row;
+   gap: 5px;
+}
+.desription {
+   width: 100%;
+   background-color: blue;
+   height: 41px;
+   position: relative;
+   bottom: 2px;
+   transition: all, 0, 5s;
+   opacity: 0;
+}
+
+.active-desctiption {
+   transition: all, 0, 5s;
+   opacity: 1;
+   /*filter: blur(1px);*/
+}
+
+.btns {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.item-info {
+   position: absolute;
+   right: 0;
+   top: 0;
+   width: 300px;
+   height: 450px;
+   background-color: #fff;
+}
+
+#filter-form {
+   position: absolute;
+   right: 0;
+   bottom: 0;
+   display: grid;
+   width: 100px;
+   height: 150px;
+   background-color: #fff;
+}
+
+#price {
+   height: 2em;
+}
