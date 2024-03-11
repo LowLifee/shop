@@ -13,25 +13,8 @@
    height: 170px;
    object-fit: fill;
 }
-.page-container {
+/*.page-container {
    width: 1050px;
-   height: 3920;
    overflow: hidden;
-}
+}*/
 
-.page-view {
-   width: 100%;
-   height: 100%;
-   transition: all 0.5;
-}
-
-.selected {
-   width: 261px;
-   height: 335px;
-}
-
-.selected img {
-   width: 200px;
-   height: 220px;
-   object-fit: fill;
-}

@@ -1,3 +1,21 @@
 .filter-form {
    width: 300px;
 }
+
+.form-inputs {
+   transition: all 0.5s;
+   margin-bottom: 10px;
+}
+
+.active-form {
+   opacity: 1;
+}
+.active-form {
+   transition: all 0.5s;
+   display: block;
+}
+
+.non-active {
+   transition: all 0.5s;
+   display: none;
+}
